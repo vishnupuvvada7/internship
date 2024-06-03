@@ -9,29 +9,31 @@ from reportlab.lib.pagesizes import letter
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer
 from reportlab.lib.styles import getSampleStyleSheet
 
+
 def generate_pdf(content):
     doc = SimpleDocTemplate("system_info.pdf", pagesize=letter)
     styles = getSampleStyleSheet()
-    
+
     # Create a list to hold the content
     elements = []
-    
+
     for title, data in content.items():
         # Add title with bold and underline style
         elements.append(Paragraph("<u><b>{}</b></u>".format(title), styles['Title']))
-        
+
         # Add data with normal style
         lines = data.split('\n')
         for line in lines:
             elements.append(Paragraph(line, styles['Normal']))
             elements.append(Spacer(1, 12))  # Add a spacer for a new line
-    
+
     # Build the PDF
     doc.build(elements)
 
 
 def execute_command(command):
-    result = subprocess.run(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True)
+    result = subprocess.run(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+                            universal_newlines=True)
     return result.stdout
 
 
@@ -42,7 +44,6 @@ def extract_network_info(ipconfig_output):
         if "IPv4 Address" in line or "IPv6 Address" in line or "Physical Address" in line or "Host Name" in line:
             info += line + "\n"
     return info
-
 
 
 def check_antivirus():
@@ -80,9 +81,11 @@ def get_last_update_date():
             break
     return f"Last Windows Update Installed On: {last_update_date}" if last_update_date else "No updates found or unable to retrieve the last update date."
 
+
 def get_license_info():
     license_info = execute_command("cscript C:/Windows/System32/slmgr.vbs /dli")
     return license_info
+
 
 def is_bios_password_set():
     c = wmi.WMI()
@@ -90,6 +93,7 @@ def is_bios_password_set():
         if bios.SerialNumber:
             return "Yes"
     return "No"
+
 
 def get_user_information():
     user_info = ""
@@ -100,14 +104,17 @@ def get_user_information():
     user_info += f"Total Users: {len(c.Win32_UserAccount())}\n"
     return user_info
 
+
 def run_net_share_command():
     command_output = execute_command("cmd /c net share")
     return f"=== Shared Folders Data ===\n{command_output}"
+
 
 def get_system_utilization():
     cpu_utilization = psutil.cpu_percent()
     memory_utilization = psutil.virtual_memory().percent
     return f"CPU Utilization: {cpu_utilization}%\nMemory Utilization: {memory_utilization}%\n"
+
 
 def get_desktop_folder_count():
     desktop_path = os.path.join(os.path.expanduser("~"), "Desktop")
@@ -116,14 +123,13 @@ def get_desktop_folder_count():
         return f"Items on Desktop Folder: {items_count}"
     else:
         return "Desktop folder not found or inaccessible."
-    
 
 
 def run_powershell_command(command):
     try:
         # Execute the PowerShell command
         result = subprocess.run(["powershell", "-Command", command], capture_output=True, text=True, shell=True)
-        
+
         # Check if the command executed successfully
         if result.returncode == 0:
             # Return the output
@@ -135,22 +141,15 @@ def run_powershell_command(command):
         # Return the exception message
         return f"Error: {e}"
 
+
 # Define the PowerShell command for USB logs
 usb_logs_command = "Get-ItemProperty -Path 'HKLM:/SYSTEM/CurrentControlSet/Enum/USBSTOR/*/*' | Select FriendlyName"
 
 # Run the PowerShell command for USB logs and get the output as a string
 usb_logs_output = run_powershell_command(usb_logs_command)
 
-
-
-    
-
-
-
 # Execute ipconfig /all
 ipconfig_output = execute_command("ipconfig /all")
-
-
 
 # Execute winver
 winver_output = execute_command("ver")

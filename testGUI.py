@@ -4,6 +4,7 @@ import os
 import sys
 import subprocess
 
+
 def get_executable_directory():
     """Get the directory where the executable is located."""
     if getattr(sys, 'frozen', False):
@@ -12,6 +13,7 @@ def get_executable_directory():
     else:
         # If the script is running as a Python script
         return os.path.dirname(os.path.realpath(__file__))
+
 
 def run_audit():
     try:
@@ -30,6 +32,8 @@ def run_audit():
         result_text.delete("1.0", tk.END)
         result_text.insert(tk.END, f"Error: {e}")
         result_text.config(state=tk.DISABLED)
+
+
 def open_result_file():
     try:
         executable_dir = get_executable_directory()
@@ -47,6 +51,7 @@ def open_result_file():
         result_text.insert(tk.END, f"Error: {e}")
         result_text.config(state=tk.DISABLED)
 
+
 def disable_services():
     try:
         executable_dir = get_executable_directory()
@@ -62,10 +67,11 @@ def disable_services():
         result_text.insert(tk.END, f"Error: {e}")
         result_text.config(state=tk.DISABLED)
 
+
 def logs_generation():
     try:
         executable_dir = get_executable_directory()
-        batch_file_path = os.path.join(executable_dir, "logs.py")
+        batch_file_path = os.path.join(executable_dir, "logs_generation.bat")
         subprocess.run([batch_file_path], shell=True)
         result_text.config(state=tk.NORMAL)
         result_text.delete("1.0", tk.END)
@@ -80,6 +86,7 @@ def logs_generation():
 
 about_frame_visible = False
 about_frame = None
+
 
 def open_about_window():
     global about_frame_visible, about_frame
@@ -127,19 +134,26 @@ def open_about_window():
 
         # Create header labels
         for col, header in enumerate(headers):
-            label = tk.Label(about_frame, text=header, bg="lightgray", fg="black", font=("Arial", 10, "bold"), borderwidth=1, relief="solid", width=20)
+            label = tk.Label(about_frame, text=header, bg="lightgray", fg="black", font=("Arial", 10, "bold"),
+                             borderwidth=1, relief="solid", width=20)
             label.grid(row=0, column=col, padx=1, pady=1)
 
         max_rows = max(len(general_audit_data), len(logs_data), len(services_data))
 
         for row in range(1, max_rows + 1):
-            general_audit_label = tk.Label(about_frame, text=list(general_audit_data.values())[row - 1] if row <= len(general_audit_data) else "", bg="white", fg="black", font=("Arial", 10), borderwidth=1, relief="solid", width=20)
+            general_audit_label = tk.Label(about_frame, text=list(general_audit_data.values())[row - 1] if row <= len(
+                general_audit_data) else "", bg="white", fg="black", font=("Arial", 10), borderwidth=1, relief="solid",
+                                           width=20)
             general_audit_label.grid(row=row, column=0, padx=1, pady=1)
 
-            logs_label = tk.Label(about_frame, text=list(logs_data.values())[row - 1] if row <= len(logs_data) else "", bg="white", fg="black", font=("Arial", 10), borderwidth=1, relief="solid", width=20)
+            logs_label = tk.Label(about_frame, text=list(logs_data.values())[row - 1] if row <= len(logs_data) else "",
+                                  bg="white", fg="black", font=("Arial", 10), borderwidth=1, relief="solid", width=20)
             logs_label.grid(row=row, column=1, padx=1, pady=1)
 
-            services_label = tk.Label(about_frame, text=list(services_data.values())[row - 1] if row <= len(services_data) else "", bg="white", fg="black", font=("Arial", 10), borderwidth=1, relief="solid", width=20)
+            services_label = tk.Label(about_frame,
+                                      text=list(services_data.values())[row - 1] if row <= len(services_data) else "",
+                                      bg="white", fg="black", font=("Arial", 10), borderwidth=1, relief="solid",
+                                      width=20)
             services_label.grid(row=row, column=2, padx=1, pady=1)
 
         about_frame_visible = True
@@ -147,7 +161,6 @@ def open_about_window():
         # Hide the about frame
         about_frame.destroy()
         about_frame_visible = False
-
 
 
 # Create main window
@@ -166,19 +179,24 @@ button_frame = tk.Frame(root, bg=bg_color)
 button_frame.pack(pady=20)
 
 # Create buttons
-audit_button = tk.Button(button_frame, text="Run Audit", command=run_audit, bg=button_bg_color, fg="white", padx=10, pady=5)
+audit_button = tk.Button(button_frame, text="Run Audit", command=run_audit, bg=button_bg_color, fg="white", padx=10,
+                         pady=5)
 audit_button.grid(row=0, column=0, padx=10)
 
-result_button = tk.Button(button_frame, text="Open Result File", command=open_result_file, bg=button_bg_color, fg="white", padx=10, pady=5)
+result_button = tk.Button(button_frame, text="Open Result File", command=open_result_file, bg=button_bg_color,
+                          fg="white", padx=10, pady=5)
 result_button.grid(row=0, column=1, padx=10)
 
-disable_button = tk.Button(button_frame, text="Disable Services", command=disable_services, bg=button_bg_color, fg="white", padx=10, pady=5)
+disable_button = tk.Button(button_frame, text="Disable Services", command=disable_services, bg=button_bg_color,
+                           fg="white", padx=10, pady=5)
 disable_button.grid(row=0, column=2, padx=10)
 
-logs_button = tk.Button(button_frame, text="Generate Logs", command=logs_generation, bg=button_bg_color, fg="white", padx=10, pady=5)
+logs_button = tk.Button(button_frame, text="Generate Logs", command=logs_generation, bg=button_bg_color, fg="white",
+                        padx=10, pady=5)
 logs_button.grid(row=0, column=4, padx=10)
 
-about_button = tk.Button(button_frame, text="About", command=open_about_window, bg=button_bg_color, fg="white", padx=10, pady=5)
+about_button = tk.Button(button_frame, text="About", command=open_about_window, bg=button_bg_color, fg="white", padx=10,
+                         pady=5)
 about_button.grid(row=0, column=5, padx=10)
 
 # Create a frame for the result text

@@ -3,20 +3,14 @@
 :: Get the directory path of the batch script
 set "script_dir=%~dp0"
 
-:: Run CMD as administrator
-powershell -Command "Start-Process cmd -Verb RunAs"
-
-:: Check if CMD is opened as admin
+:: Check if the script is running as administrator by attempting to open a protected file
+openfiles >nul 2>&1
 if %errorlevel% neq 0 (
-    echo Failed to open CMD as administrator.
+    echo Requesting administrative privileges...
+    powershell -Command "Start-Process cmd -ArgumentList '/c %~dpnx0' -Verb RunAs"
     exit /b
 )
 
-:: Wait for CMD to open
-timeout /t 2 /nobreak >nul
-
 :: Run the Python script
-python "%script_dir%\logs.py"
+python "%script_dir%logs.py"
 
-:: Wait for user input to close the window
-pause
