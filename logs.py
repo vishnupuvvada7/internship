@@ -17,7 +17,10 @@ def execute_and_write_to_file(command, output_file):
 
 
 if __name__ == "__main__":
-    log_directory = "logs"
+    # Get the user's Desktop path
+    desktop_path = os.path.join(os.path.join(os.environ['USERPROFILE']), 'Downloads')
+    log_directory = os.path.join(desktop_path, "WindowsLogs")
+
     if not os.path.exists(log_directory):
         os.makedirs(log_directory)
 
