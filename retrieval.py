@@ -1,6 +1,7 @@
 import subprocess
 import os
 import wmi
+import winreg
 import psutil
 import check_services
 from reportlab.lib import colors
@@ -47,7 +48,7 @@ def extract_network_info(ipconfig_output):
 def check_antivirus():
     # PowerShell script content
     powershell_script = '''
-    $antivirus = Get-WmiObject -Namespace "root\SecurityCenter2" -Class AntiVirusProduct
+    $antivirus = Get-WmiObject -Namespace "root\\SecurityCenter2" -Class AntiVirusProduct
     if ($antivirus) {
         Write-Output "Antivirus software is installed."
         foreach ($product in $antivirus) {
@@ -118,8 +119,33 @@ def get_desktop_folder_count():
     
 
 
+def run_powershell_command(command):
+    try:
+        # Execute the PowerShell command
+        result = subprocess.run(["powershell", "-Command", command], capture_output=True, text=True, shell=True)
+        
+        # Check if the command executed successfully
+        if result.returncode == 0:
+            # Return the output
+            return result.stdout.strip()
+        else:
+            # Return the error message
+            return f"Error: {result.stderr.strip()}"
+    except Exception as e:
+        # Return the exception message
+        return f"Error: {e}"
 
-# Main script
+# Define the PowerShell command for USB logs
+usb_logs_command = "Get-ItemProperty -Path 'HKLM:/SYSTEM/CurrentControlSet/Enum/USBSTOR/*/*' | Select FriendlyName"
+
+# Run the PowerShell command for USB logs and get the output as a string
+usb_logs_output = run_powershell_command(usb_logs_command)
+
+
+
+    
+
+
 
 # Execute ipconfig /all
 ipconfig_output = execute_command("ipconfig /all")
@@ -140,10 +166,11 @@ shared_folders_data = run_net_share_command()
 system_utilization = get_system_utilization()
 desktop_folder_count = get_desktop_folder_count()
 services_status = check_services.print_service_status()
+usb_logs = usb_logs_output
 
 # Construct content dictionary
 content = {
-    "ipconfig /all": network_info,
+    "IP Configuration": network_info,
     "Winver": winver_output,
     "Antivirus Check": antivirus_info,
     "Last Windows Update Date": last_update_date,
@@ -153,7 +180,8 @@ content = {
     "User Accounts Information": user_information,
     "Shared Folders Data": shared_folders_data,
     "CPU And RAM Utilization": system_utilization,
-    "Current Services Status": services_status
+    "Current Services Status": services_status,
+    "USB Logs": usb_logs_output
 }
 
 # Generate PDF report
