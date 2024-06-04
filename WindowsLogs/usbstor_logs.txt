@@ -1,0 +1,83 @@
+DeviceDesc    : @cdrom.inf,%gencdrom_devdesc%;CD-ROM Drive
+Capabilities  : 16
+Address       : 6
+ContainerID   : {23938e76-958b-5d98-a7b7-97cf26a14586}
+HardwareID    : {USBSTOR\CdRomhp______CDDVDW_GP70N____RR02, USBSTOR\CdRomhp______CDDVDW_GP70N____, 
+                USBSTOR\CdRomhp______, USBSTOR\hp______CDDVDW_GP70N____R...}
+CompatibleIDs : {USBSTOR\CdRom, USBSTOR\RAW, GenCdRom}
+ClassGUID     : {4d36e965-e325-11ce-bfc1-08002be10318}
+Service       : cdrom
+Driver        : {4d36e965-e325-11ce-bfc1-08002be10318}\0003
+Mfg           : @cdrom.inf,%genmanufacturer%;(Standard CD-ROM drives)
+FriendlyName  : hp CDDVDW GP70N USB Device
+ConfigFlags   : 0
+PSPath        : Microsoft.PowerShell.Core\Registry::HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Enum\USBSTOR\CdRom&Ven_
+                hp&Prod_CDDVDW_GP70N&Rev_RR02\K02Z3SA4843_________&0
+PSParentPath  : Microsoft.PowerShell.Core\Registry::HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Enum\USBSTOR\CdRom&Ven_
+                hp&Prod_CDDVDW_GP70N&Rev_RR02
+PSChildName   : K02Z3SA4843_________&0
+PSDrive       : HKLM
+PSProvider    : Microsoft.PowerShell.Core\Registry
+
+DeviceDesc    : @cdrom.inf,%gencdrom_devdesc%;CD-ROM Drive
+Capabilities  : 16
+Address       : 2
+ContainerID   : {c829c2db-24fa-5fea-9e7b-2d13123b9c59}
+HardwareID    : {USBSTOR\CdRomhp______CDDVDW_GP70N____RR02, USBSTOR\CdRomhp______CDDVDW_GP70N____, 
+                USBSTOR\CdRomhp______, USBSTOR\hp______CDDVDW_GP70N____R...}
+CompatibleIDs : {USBSTOR\CdRom, USBSTOR\RAW, GenCdRom}
+ClassGUID     : {4d36e965-e325-11ce-bfc1-08002be10318}
+FriendlyName  : hp CDDVDW GP70N USB Device
+Service       : cdrom
+Driver        : {4d36e965-e325-11ce-bfc1-08002be10318}\0000
+Mfg           : @cdrom.inf,%genmanufacturer%;(Standard CD-ROM drives)
+ConfigFlags   : 0
+PSPath        : Microsoft.PowerShell.Core\Registry::HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Enum\USBSTOR\CdRom&Ven_
+                hp&Prod_CDDVDW_GP70N&Rev_RR02\K0BM5KA0328_________&0
+PSParentPath  : Microsoft.PowerShell.Core\Registry::HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Enum\USBSTOR\CdRom&Ven_
+                hp&Prod_CDDVDW_GP70N&Rev_RR02
+PSChildName   : K0BM5KA0328_________&0
+PSDrive       : HKLM
+PSProvider    : Microsoft.PowerShell.Core\Registry
+
+DeviceDesc    : @cdrom.inf,%gencdrom_devdesc%;CD-ROM Drive
+Capabilities  : 16
+Address       : 2
+ContainerID   : {fbfb0b59-2639-598b-a238-99ba06d0cd6a}
+HardwareID    : {USBSTOR\CdRomhp______CDDVDW_GP70N____RR02, USBSTOR\CdRomhp______CDDVDW_GP70N____, 
+                USBSTOR\CdRomhp______, USBSTOR\hp______CDDVDW_GP70N____R...}
+CompatibleIDs : {USBSTOR\CdRom, USBSTOR\RAW, GenCdRom}
+ClassGUID     : {4d36e965-e325-11ce-bfc1-08002be10318}
+Service       : cdrom
+Driver        : {4d36e965-e325-11ce-bfc1-08002be10318}\0002
+Mfg           : @cdrom.inf,%genmanufacturer%;(Standard CD-ROM drives)
+FriendlyName  : hp CDDVDW GP70N USB Device
+ConfigFlags   : 0
+PSPath        : Microsoft.PowerShell.Core\Registry::HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Enum\USBSTOR\CdRom&Ven_
+                hp&Prod_CDDVDW_GP70N&Rev_RR02\K0QM5KA0614_________&0
+PSParentPath  : Microsoft.PowerShell.Core\Registry::HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Enum\USBSTOR\CdRom&Ven_
+                hp&Prod_CDDVDW_GP70N&Rev_RR02
+PSChildName   : K0QM5KA0614_________&0
+PSDrive       : HKLM
+PSProvider    : Microsoft.PowerShell.Core\Registry
+
+DeviceDesc    : @disk.inf,%disk_devdesc%;Disk drive
+Capabilities  : 16
+Address       : 18
+ContainerID   : {2f265de1-e3ed-5ac9-94be-492f919dcee2}
+HardwareID    : {USBSTOR\DiskSanDisk_Ultra___________1.00, USBSTOR\DiskSanDisk_Ultra___________, USBSTOR\DiskSanDisk_, 
+                USBSTOR\SanDisk_Ultra___________1...}
+CompatibleIDs : {USBSTOR\Disk, USBSTOR\RAW, GenDisk}
+ClassGUID     : {4d36e967-e325-11ce-bfc1-08002be10318}
+Service       : disk
+Driver        : {4d36e967-e325-11ce-bfc1-08002be10318}\0002
+Mfg           : @disk.inf,%genmanufacturer%;(Standard disk drives)
+FriendlyName  : SanDisk Ultra USB Device
+ConfigFlags   : 0
+PSPath        : Microsoft.PowerShell.Core\Registry::HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Enum\USBSTOR\Disk&Ven_S
+                anDisk&Prod_Ultra&Rev_1.00\040120447f8173aa363cee1ab14dc229e99fb4a12de099b5a90b19571db41a8
+PSParentPath  : Microsoft.PowerShell.Core\Registry::HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Enum\USBSTOR\Disk&Ven_S
+                anDisk&Prod_Ultra&Rev_1.00
+PSChildName   : 040120447f8173aa363cee1ab14dc229e99fb4a12de099b5a90b19571db41a8
+PSDrive       : HKLM
+PSProvider    : Microsoft.PowerShell.Core\Registry

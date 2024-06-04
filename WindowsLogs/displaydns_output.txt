@@ -1,0 +1,166 @@
+Windows IP Configuration
+
+    www.casweb.local
+    ----------------------------------------
+    Record Name . . . . . : www.casweb.local
+    Record Type . . . . . : 28
+    Time To Live  . . . . : 519108
+    Data Length . . . . . : 16
+    Section . . . . . . . : Answer
+    AAAA Record . . . . . : ::1
+
+
+    www.casweb.local
+    ----------------------------------------
+    Record Name . . . . . : www.casweb.local
+    Record Type . . . . . : 1
+    Time To Live  . . . . : 519108
+    Data Length . . . . . : 4
+    Section . . . . . . . : Answer
+    A (Host) Record . . . : 127.0.0.1
+
+
+    1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa
+    ----------------------------------------
+    Record Name . . . . . : 1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa.
+    Record Type . . . . . : 12
+    Time To Live  . . . . : 519108
+    Data Length . . . . . : 8
+    Section . . . . . . . : Answer
+    PTR Record  . . . . . : casweb.local
+
+
+    Record Name . . . . . : 1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa.
+    Record Type . . . . . : 12
+    Time To Live  . . . . : 519108
+    Data Length . . . . . : 8
+    Section . . . . . . . : Answer
+    PTR Record  . . . . . : www.casweb.local
+
+
+    chatgpt.com
+    ----------------------------------------
+    Record Name . . . . . : chatgpt.com
+    Record Type . . . . . : 1
+    Time To Live  . . . . : 219
+    Data Length . . . . . : 4
+    Section . . . . . . . : Answer
+    A (Host) Record . . . : 104.18.32.115
+
+
+    Record Name . . . . . : chatgpt.com
+    Record Type . . . . . : 1
+    Time To Live  . . . . : 219
+    Data Length . . . . . : 4
+    Section . . . . . . . : Answer
+    A (Host) Record . . . : 172.64.155.141
+
+
+    1.0.0.127.in-addr.arpa
+    ----------------------------------------
+    Record Name . . . . . : 1.0.0.127.in-addr.arpa.
+    Record Type . . . . . : 12
+    Time To Live  . . . . : 519108
+    Data Length . . . . . : 8
+    Section . . . . . . . : Answer
+    PTR Record  . . . . . : casweb.local
+
+
+    Record Name . . . . . : 1.0.0.127.in-addr.arpa.
+    Record Type . . . . . : 12
+    Time To Live  . . . . : 519108
+    Data Length . . . . . : 8
+    Section . . . . . . . : Answer
+    PTR Record  . . . . . : www.casweb.local
+
+
+    casweb.local
+    ----------------------------------------
+    Record Name . . . . . : casweb.local
+    Record Type . . . . . : 28
+    Time To Live  . . . . : 519108
+    Data Length . . . . . : 16
+    Section . . . . . . . : Answer
+    AAAA Record . . . . . : ::1
+
+
+    casweb.local
+    ----------------------------------------
+    Record Name . . . . . : casweb.local
+    Record Type . . . . . : 1
+    Time To Live  . . . . : 519108
+    Data Length . . . . . : 4
+    Section . . . . . . . : Answer
+    A (Host) Record . . . : 127.0.0.1
+
+
+    rna-v2-resource.acrobat.com
+    ----------------------------------------
+    Record Name . . . . . : rna-v2-resource.acrobat.com
+    Record Type . . . . . : 5
+    Time To Live  . . . . : 385
+    Data Length . . . . . : 8
+    Section . . . . . . . : Answer
+    CNAME Record  . . . . : redirect.acrobat.com
+
+
+    Record Name . . . . . : redirect.acrobat.com
+    Record Type . . . . . : 1
+    Time To Live  . . . . : 385
+    Data Length . . . . . : 4
+    Section . . . . . . . : Answer
+    A (Host) Record . . . : 192.243.241.135
+
+
+    pypi.org
+    ----------------------------------------
+    Record Name . . . . . : pypi.org
+    Record Type . . . . . : 1
+    Time To Live  . . . . : 32232
+    Data Length . . . . . : 4
+    Section . . . . . . . : Answer
+    A (Host) Record . . . : 151.101.128.223
+
+
+    Record Name . . . . . : pypi.org
+    Record Type . . . . . : 1
+    Time To Live  . . . . : 32232
+    Data Length . . . . . : 4
+    Section . . . . . . . : Answer
+    A (Host) Record . . . : 151.101.0.223
+
+
+    Record Name . . . . . : pypi.org
+    Record Type . . . . . : 1
+    Time To Live  . . . . : 32232
+    Data Length . . . . . : 4
+    Section . . . . . . . : Answer
+    A (Host) Record . . . : 151.101.64.223
+
+
+    Record Name . . . . . : pypi.org
+    Record Type . . . . . : 1
+    Time To Live  . . . . : 32232
+    Data Length . . . . . : 4
+    Section . . . . . . . : Answer
+    A (Host) Record . . . : 151.101.192.223
+
+
+    clientservices.googleapis.com
+    ----------------------------------------
+    Record Name . . . . . : clientservices.googleapis.com
+    Record Type . . . . . : 1
+    Time To Live  . . . . : 35
+    Data Length . . . . . : 4
+    Section . . . . . . . : Answer
+    A (Host) Record . . . : 142.250.67.163
+
+
+    array503.prod.do.dsp.mp.microsoft.com
+    ----------------------------------------
+    Record Name . . . . . : array503.prod.do.dsp.mp.microsoft.com
+    Record Type . . . . . : 1
+    Time To Live  . . . . : 564
+    Data Length . . . . . : 4
+    Section . . . . . . . : Answer
+    A (Host) Record . . . : 52.179.219.14
