@@ -4,7 +4,6 @@ import os
 import sys
 import subprocess
 
-
 def get_executable_directory():
     """Get the directory where the executable is located."""
     if getattr(sys, 'frozen', False):
@@ -13,7 +12,6 @@ def get_executable_directory():
     else:
         # If the script is running as a Python script
         return os.path.dirname(os.path.realpath(__file__))
-
 
 def run_audit():
     try:
@@ -32,8 +30,6 @@ def run_audit():
         result_text.delete("1.0", tk.END)
         result_text.insert(tk.END, f"Error: {e}")
         result_text.config(state=tk.DISABLED)
-
-
 def open_result_file():
     try:
         executable_dir = get_executable_directory()
@@ -51,7 +47,6 @@ def open_result_file():
         result_text.insert(tk.END, f"Error: {e}")
         result_text.config(state=tk.DISABLED)
 
-
 def disable_services():
     try:
         executable_dir = get_executable_directory()
@@ -66,7 +61,6 @@ def disable_services():
         result_text.delete("1.0", tk.END)
         result_text.insert(tk.END, f"Error: {e}")
         result_text.config(state=tk.DISABLED)
-
 
 def logs_generation():
     try:
@@ -83,10 +77,8 @@ def logs_generation():
         result_text.insert(tk.END, f"Error: {e}")
         result_text.config(state=tk.DISABLED)
 
-
 about_frame_visible = False
 about_frame = None
-
 
 def open_about_window():
     global about_frame_visible, about_frame
@@ -134,26 +126,19 @@ def open_about_window():
 
         # Create header labels
         for col, header in enumerate(headers):
-            label = tk.Label(about_frame, text=header, bg="lightgray", fg="black", font=("Arial", 10, "bold"),
-                             borderwidth=1, relief="solid", width=20)
+            label = tk.Label(about_frame, text=header, bg="lightgray", fg="black", font=("Arial", 10, "bold"), borderwidth=1, relief="solid", width=20)
             label.grid(row=0, column=col, padx=1, pady=1)
 
         max_rows = max(len(general_audit_data), len(logs_data), len(services_data))
 
         for row in range(1, max_rows + 1):
-            general_audit_label = tk.Label(about_frame, text=list(general_audit_data.values())[row - 1] if row <= len(
-                general_audit_data) else "", bg="white", fg="black", font=("Arial", 10), borderwidth=1, relief="solid",
-                                           width=20)
+            general_audit_label = tk.Label(about_frame, text=list(general_audit_data.values())[row - 1] if row <= len(general_audit_data) else "", bg="white", fg="black", font=("Arial", 10), borderwidth=1, relief="solid", width=20)
             general_audit_label.grid(row=row, column=0, padx=1, pady=1)
 
-            logs_label = tk.Label(about_frame, text=list(logs_data.values())[row - 1] if row <= len(logs_data) else "",
-                                  bg="white", fg="black", font=("Arial", 10), borderwidth=1, relief="solid", width=20)
+            logs_label = tk.Label(about_frame, text=list(logs_data.values())[row - 1] if row <= len(logs_data) else "", bg="white", fg="black", font=("Arial", 10), borderwidth=1, relief="solid", width=20)
             logs_label.grid(row=row, column=1, padx=1, pady=1)
 
-            services_label = tk.Label(about_frame,
-                                      text=list(services_data.values())[row - 1] if row <= len(services_data) else "",
-                                      bg="white", fg="black", font=("Arial", 10), borderwidth=1, relief="solid",
-                                      width=20)
+            services_label = tk.Label(about_frame, text=list(services_data.values())[row - 1] if row <= len(services_data) else "", bg="white", fg="black", font=("Arial", 10), borderwidth=1, relief="solid", width=20)
             services_label.grid(row=row, column=2, padx=1, pady=1)
 
         about_frame_visible = True
@@ -161,6 +146,65 @@ def open_about_window():
         # Hide the about frame
         about_frame.destroy()
         about_frame_visible = False
+
+
+
+manual_frame_visible = False
+manual_frame = None
+
+def open_manual_window():
+    global manual_frame_visible , manual_frame
+
+    if not manual_frame_visible:
+        headers = ["Manual Tasks", "Process"]
+        manual_services_data = {
+            "Last Update Of Antivirus": {"Process":"Check In Antivirus"},
+            "Disable AutoPlay":{"Process":"In Windows Settings"},
+
+            "Disable Password Auto-Save": {"Process":"Password Settings In Browser"},
+            "Unwanted Softwares Delete":{"Process":"Use Control Panel"},
+
+            "secpol.msc->Acc pol->Pass pol": {"Process":"Password must meet complexity[Enable]"},
+            "secpol.msc->Local pol->Sec options":{"Process":"Machine inactivty limit[60secs]"},
+            "secpol.msc->Local pol->Acc Lockout Pol": {"Process":"Reset account lockout[10mins]"},
+            "if Bios-Password not Set": {"Process":"Set Bios Password"},
+            
+            
+            # Add more services as needed
+        }
+
+        # Clear existing manual frame if it exists
+        if manual_frame:
+            manual_frame.destroy()
+
+        # Create new manual frame
+        manual_frame = tk.Frame(root, bg=bg_color)
+        manual_frame.pack(pady=20)
+
+        # Create header labels
+        for col, header in enumerate(headers):
+            label = tk.Label(manual_frame, text=header, bg="lightgray", fg="black", font=("Arial", 10, "bold"), borderwidth=1, relief="solid", width=30)
+            label.grid(row=0, column=col, padx=1, pady=1)
+
+        # Populate manual services data
+        for row, (service_name, service_info) in enumerate(manual_services_data.items(), start=1):
+            service_label = tk.Label(manual_frame, text=service_name, bg="white", fg="black", font=("Arial", 10), borderwidth=1, relief="solid", width=30)
+            service_label.grid(row=row, column=0, padx=1, pady=1)
+
+            status_label = tk.Label(manual_frame, text=service_info.get("Process", ""), bg="white", fg="black", font=("Arial", 10), borderwidth=1, relief="solid", width=30)
+            status_label.grid(row=row, column=1, padx=1, pady=1)
+
+           
+        manual_frame_visible = True
+    else:
+        # Hide the manual frame
+        manual_frame.destroy()
+        manual_frame_visible = False
+
+
+
+
+
 
 
 # Create main window
@@ -171,40 +215,37 @@ root.title("CAS AUDIT TOOL")
 bg_color = "#283046"
 button_bg_color = "#404e5c"
 
-# Set background color for the root window
-root.config(bg=bg_color)
+
 
 # Create a frame for the buttons
 button_frame = tk.Frame(root, bg=bg_color)
 button_frame.pack(pady=20)
 
 # Create buttons
-audit_button = tk.Button(button_frame, text="Run Audit", command=run_audit, bg=button_bg_color, fg="white", padx=10,
-                         pady=5)
+audit_button = tk.Button(button_frame, text="Run Audit", command=run_audit, bg=button_bg_color, fg="white", padx=10, pady=5)
 audit_button.grid(row=0, column=0, padx=10)
 
-result_button = tk.Button(button_frame, text="Open Result File", command=open_result_file, bg=button_bg_color,
-                          fg="white", padx=10, pady=5)
+result_button = tk.Button(button_frame, text="Open Result File", command=open_result_file, bg=button_bg_color, fg="white", padx=10, pady=5)
 result_button.grid(row=0, column=1, padx=10)
 
-disable_button = tk.Button(button_frame, text="Disable Services", command=disable_services, bg=button_bg_color,
-                           fg="white", padx=10, pady=5)
+disable_button = tk.Button(button_frame, text="Disable Services", command=disable_services, bg=button_bg_color, fg="white", padx=10, pady=5)
 disable_button.grid(row=0, column=2, padx=10)
 
-logs_button = tk.Button(button_frame, text="Generate Logs", command=logs_generation, bg=button_bg_color, fg="white",
-                        padx=10, pady=5)
-logs_button.grid(row=0, column=4, padx=10)
+logs_button = tk.Button(button_frame, text="Generate Logs", command=logs_generation, bg=button_bg_color, fg="white", padx=10, pady=5)
+logs_button.grid(row=0, column=3, padx=10)
 
-about_button = tk.Button(button_frame, text="About", command=open_about_window, bg=button_bg_color, fg="white", padx=10,
-                         pady=5)
-about_button.grid(row=0, column=5, padx=10)
+about_button = tk.Button(button_frame, text="About", command=open_about_window, bg=button_bg_color, fg="white", padx=10, pady=5)
+about_button.grid(row=0, column=4, padx=10)
+
+manual_button = tk.Button(button_frame, text="Manual", command=open_manual_window, bg=button_bg_color, fg="white", padx=10, pady=5)
+manual_button.grid(row=0, column=5, padx=10)
 
 # Create a frame for the result text
 result_frame = tk.Frame(root, bg=bg_color)
 result_frame.pack(pady=20)
 
 # Create a text box for displaying results
-result_text = tk.Text(result_frame, height=5, width=80, bg=button_bg_color, fg="white")
+result_text = tk.Text(result_frame, height=10, width=80, bg=button_bg_color, fg="white")
 result_text.pack(padx=20, pady=20)
 
 # Create a frame for the about information
