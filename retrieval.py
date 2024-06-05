@@ -260,11 +260,11 @@ def print_service_status():
         result = subprocess.run(["powershell.exe", "-Command", "Get-WindowsOptionalFeature", "-Online", "-FeatureName", "TelnetClient"], capture_output=True, text=True, shell=False)
         output = result.stdout
         if "Disabled" in output:
-            status_msg += "Telnet is disabled"
+            status_msg += "Telnet is disabled\n"
         elif "Enabled" in output:
-            status_msg += "Telnet is enabled"
+            status_msg += "Telnet is enabled\n"
         else:   
-            status_msg += "Telnet status unknown"
+            status_msg += "Telnet status unknown\n"
 
         # Retrieve other system status information
         max_password_age = get_max_password_age()
