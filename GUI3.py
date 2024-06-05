@@ -221,12 +221,36 @@ def select_option():
             result_text.delete("1.0", tk.END)
             result_text.insert(tk.END, f"Error: {e}")
             result_text.config(state=tk.DISABLED)
-    elif selected_option == "Temp Files":
+    elif selected_option == "%Temp Files":
         try:
             subprocess.run(["python", "clear_Temp.py"])
             result_text.config(state=tk.NORMAL)
             result_text.delete("1.0", tk.END)
+            result_text.insert(tk.END, "%Temporary files cleared successfully.")
+            result_text.config(state=tk.DISABLED)
+        except Exception as e:
+            result_text.config(state=tk.NORMAL)
+            result_text.delete("1.0", tk.END)
+            result_text.insert(tk.END, f"Error: {e}")
+            result_text.config(state=tk.DISABLED)
+    elif selected_option == "temp":
+        try:
+            subprocess.run([ "temp.bat"])
+            result_text.config(state=tk.NORMAL)
+            result_text.delete("1.0", tk.END)
             result_text.insert(tk.END, "Temporary files cleared successfully.")
+            result_text.config(state=tk.DISABLED)
+        except Exception as e:
+            result_text.config(state=tk.NORMAL)
+            result_text.delete("1.0", tk.END)
+            result_text.insert(tk.END, f"Error: {e}")
+            result_text.config(state=tk.DISABLED)
+    elif selected_option == "prefetch":
+        try:
+            subprocess.run(["python", "prefetch.py"])
+            result_text.config(state=tk.NORMAL)
+            result_text.delete("1.0", tk.END)
+            result_text.insert(tk.END, "prefetch files cleared successfully.")
             result_text.config(state=tk.DISABLED)
         except Exception as e:
             result_text.config(state=tk.NORMAL)
@@ -292,7 +316,7 @@ logs_button = tk.Button(button_frame, text="Generate Logs", command=logs_generat
 logs_button.grid(row=0, column=5, padx=10)
 
 
-options = ["Recycle Bin", "Temp Files"]
+options = ["Recycle Bin", "%Temp Files","temp","prefetch"]
 
 combo = ttk.Combobox(root, values=options)
 combo.current(0)  # Default value
