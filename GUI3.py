@@ -1,6 +1,5 @@
 import tkinter as tk
-from tkinter import PhotoImage
-from tkinter.ttk import Label
+from tkinter import ttk
 from PIL import ImageTk, Image
 import os
 import sys
@@ -81,6 +80,8 @@ def logs_generation():
 
 about_frame_visible = False
 about_frame = None
+
+
 
 def open_about_window():
     global about_frame_visible, about_frame
@@ -205,6 +206,61 @@ def open_manual_window():
 
 
 
+def select_option():
+    selected_option = combo.get()
+    print("Selected:", selected_option)
+    if selected_option == "Recycle Bin":
+        try:
+            subprocess.run(["python", "clearRecycle.py"])
+            result_text.config(state=tk.NORMAL)
+            result_text.delete("1.0", tk.END)
+            result_text.insert(tk.END, "Recycle Bin cleared successfully.")
+            result_text.config(state=tk.DISABLED)
+        except Exception as e:
+            result_text.config(state=tk.NORMAL)
+            result_text.delete("1.0", tk.END)
+            result_text.insert(tk.END, f"Error: {e}")
+            result_text.config(state=tk.DISABLED)
+    elif selected_option == "%Temp Files":
+        try:
+            subprocess.run(["python", "clear_Temp.py"])
+            result_text.config(state=tk.NORMAL)
+            result_text.delete("1.0", tk.END)
+            result_text.insert(tk.END, "%Temporary files cleared successfully.")
+            result_text.config(state=tk.DISABLED)
+        except Exception as e:
+            result_text.config(state=tk.NORMAL)
+            result_text.delete("1.0", tk.END)
+            result_text.insert(tk.END, f"Error: {e}")
+            result_text.config(state=tk.DISABLED)
+    elif selected_option == "temp":
+        try:
+            subprocess.run([ "temp.bat"])
+            result_text.config(state=tk.NORMAL)
+            result_text.delete("1.0", tk.END)
+            result_text.insert(tk.END, "Temporary files cleared successfully.")
+            result_text.config(state=tk.DISABLED)
+        except Exception as e:
+            result_text.config(state=tk.NORMAL)
+            result_text.delete("1.0", tk.END)
+            result_text.insert(tk.END, f"Error: {e}")
+            result_text.config(state=tk.DISABLED)
+    elif selected_option == "prefetch":
+        try:
+            subprocess.run(["python", "prefetch.py"])
+            result_text.config(state=tk.NORMAL)
+            result_text.delete("1.0", tk.END)
+            result_text.insert(tk.END, "prefetch files cleared successfully.")
+            result_text.config(state=tk.DISABLED)
+        except Exception as e:
+            result_text.config(state=tk.NORMAL)
+            result_text.delete("1.0", tk.END)
+            result_text.insert(tk.END, f"Error: {e}")
+            result_text.config(state=tk.DISABLED)
+
+bg_color = "#283046"
+button_bg_color = "#283046"
+
 
 
 
@@ -214,8 +270,7 @@ root = tk.Tk()
 root.title("CAS AUDIT TOOL")
 
 # Define custom colors
-bg_color = "#283046"
-button_bg_color = "#283046"
+
 
 img = Image.open("CAS.jpeg")
 img = img.resize((60, 60))  # Adjust the size as needed
@@ -260,6 +315,15 @@ result_button.grid(row=0, column=4, padx=10)
 logs_button = tk.Button(button_frame, text="Generate Logs", command=logs_generation, bg=button_bg_color, fg="white", padx=10, pady=5)
 logs_button.grid(row=0, column=5, padx=10)
 
+
+options = ["Recycle Bin", "%Temp Files","temp","prefetch"]
+
+combo = ttk.Combobox(root, values=options)
+combo.current(0)  # Default value
+combo.pack()
+
+clear_button = ttk.Button(root, text="Clear", command=select_option)
+clear_button.pack()
 
 
 

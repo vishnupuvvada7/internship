@@ -12,7 +12,7 @@ def search_files(root_dir, file_types):
     return file_paths_by_type
 
 # Update file types as needed (remove ".exe" if a security risk)
-file_types = {".mp3", ".mp4", ".pptx", ".exe", ".apk",".gif"}
+file_types = {".mp3", ".mp4", ".pptx", ".pdf", ".apk",".gif"}
 
 # Start search from the root directory of the system
 root_path = "/"  # For Unix-like systems
